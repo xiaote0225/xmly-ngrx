@@ -5,7 +5,7 @@ import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Base, User } from './types';
 
-interface LoginType{
+export interface LoginType{
   user:User;
   token:string;
 }
