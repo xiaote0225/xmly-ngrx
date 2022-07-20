@@ -1,0 +1,13 @@
+<div class="bread-crumb-item">
+  <div class="content">
+    <ng-content></ng-content>
+  </div>
+  <div class="separator">
+    <span *xmStrTplOutlet="parent.xmSeparator;context:myContext">{{parent.xmSeparator}}</span>
+    <!-- <ng-container [ngTemplateOutlet]="parent.xmSeparator || defSeparatorTpl">
+    </ng-container>
+    <ng-template #defSeparatorTpl>
+      <span>&gt;</span>
+    </ng-template> -->
+  </div>
+</div>
