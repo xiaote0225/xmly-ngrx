@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InterceptorService } from './services/apis/interceptor.service';
 import { MessageModule } from './share/components/message/message.module';
 import { PlayerComponent } from './layouts/player/player.component';
+import { XmStoreModule } from './store';
 
 
 
@@ -38,7 +39,8 @@ import { PlayerComponent } from './layouts/player/player.component';
     FormsModule,
     ReactiveFormsModule,
     MessageModule,
-    BackTopModule
+    BackTopModule,
+    XmStoreModule
   ],
   exports: [
     BrowserModule,
