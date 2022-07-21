@@ -1277,10 +1277,10 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@ngrx/store@^14.0.2":
-  version "14.0.2"
-  resolved "http://10.6.32.13:4873/@ngrx%2fstore/-/store-14.0.2.tgz#f9ab5fd68ea219aeb39276a9ba0e3e24b20e39aa"
-  integrity sha512-ogxcK7fj4zXCxCVJXzX2+jbVCfvC7ehbvbD5oWXT7GFajUIvA8FSXQzapUPAQEqFbjxgFzhjMFBApMaOcfleIQ==
+"@ngrx/store@^13.2.0":
+  version "13.2.0"
+  resolved "http://10.6.32.13:4873/@ngrx%2fstore/-/store-13.2.0.tgz#43d4e9bf064808dd546ef1edbbcd08c2a8e0871a"
+  integrity sha512-3wlGMkfe0EXsiS6E6W0wCksuGapa5Z6JVFvKQMHFpXZ3XeixXKlULnemlcdMT7Yrnry+CGOtRHqkmKxLoQzhTw==
   dependencies:
     tslib "^2.0.0"
 

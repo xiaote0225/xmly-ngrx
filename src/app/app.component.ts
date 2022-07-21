@@ -13,6 +13,10 @@ import { storageKeys } from './configs';
 import { MessageService } from './share/components/message/message.service';
 import { XmMessgeType } from './share/components/message/types';
 import { PlayerService } from './services/business/player.service';
+import { select, Store } from '@ngrx/store';
+import { ContextStoreModule } from './store/context';
+import { selectContextFeature,getUser } from './store/context/selectors';
+import { setUser } from './store/context/action';
 
 @Component({
   selector: 'xm-root',
@@ -57,10 +61,21 @@ export class AppComponent implements OnInit {
   // private overlaySub!:Subscription | null;
 
   showLogin = false;
-  constructor(private albumServe: AlbumService, private cdr: ChangeDetectorRef, private categoryService: CategoryService,private router: Router,private winServe:WindowService,private userServe:UserService,private contextService:ContextService,private messageService:MessageService,private playerServe: PlayerService) {
+  constructor(private albumServe: AlbumService, private cdr: ChangeDetectorRef, private categoryService: CategoryService,private router: Router,private winServe:WindowService,private userServe:UserService,private contextService:ContextService,private messageService:MessageService,private playerServe: PlayerService,private store$:Store<ContextStoreModule>) {
     // this.albumServe.categories().subscribe(res => {
     //   // console.log(res);
     // })
+    this.store$.select(selectContextFeature).pipe(select(getUser)).subscribe(user => {
+      console.log('context user',user)
+    })
+  }
+
+  setUser():void{
+    this.store$.dispatch(setUser({
+      phone:'111',
+      name:'张三',
+      password:'aaa'
+    }))
   }
 
   // showOverlay(){
@@ -178,3 +193,4 @@ export class AppComponent implements OnInit {
   }
 
 }
+

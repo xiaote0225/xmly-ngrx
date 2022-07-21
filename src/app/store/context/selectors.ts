@@ -1,7 +1,7 @@
 import { contextFeatureKey, ContextState } from './reducer';
-import { createFeature, createSelector } from "@ngrx/store";
+import {createFeatureSelector, createSelector } from "@ngrx/store";
 
-// const selectContextFeature = createFeature<ContextState>(contextFeatureKey);
+export const selectContextFeature = createFeatureSelector<ContextState>(contextFeatureKey);
 
 const selectContextState = (state:ContextState) => state;
 
