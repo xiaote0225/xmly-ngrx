@@ -1,22 +1,16 @@
 import { trigger, transition, style, animate } from '@angular/animations';
-import { combineLatest, empty, merge, of, pluck, Subscription, switchMap } from 'rxjs';
+import { combineLatest } from 'rxjs';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlbumService } from './services/apis/album.service';
 import { Category, Track, AlbumInfo } from './services/apis/types';
 import { CategoryService } from './services/business/category.service';
-import { OverlayService, OverlayRef } from './services/tools/overlay.service';
 import { WindowService } from './services/tools/window.service';
 import { UserService } from './services/apis/user.service';
-import { ContextService } from './services/business/context.service';
 import { storageKeys } from './configs';
 import { MessageService } from './share/components/message/message.service';
-import { XmMessgeType } from './share/components/message/types';
 import { PlayerService } from './services/business/player.service';
-import { select, Store } from '@ngrx/store';
-import { ContextStoreModule } from './store/context';
-import { selectContextFeature,getUser } from './store/context/selectors';
-import { setUser } from './store/context/action';
+import { ContextStoreService } from './services/business/context.store.service';
 
 @Component({
   selector: 'xm-root',
@@ -61,22 +55,12 @@ export class AppComponent implements OnInit {
   // private overlaySub!:Subscription | null;
 
   showLogin = false;
-  constructor(private albumServe: AlbumService, private cdr: ChangeDetectorRef, private categoryService: CategoryService,private router: Router,private winServe:WindowService,private userServe:UserService,private contextService:ContextService,private messageService:MessageService,private playerServe: PlayerService,private store$:Store<ContextStoreModule>) {
+  constructor(private albumServe: AlbumService, private cdr: ChangeDetectorRef, private categoryService: CategoryService,private router: Router,private winServe:WindowService,private userServe:UserService,private contextStoreService:ContextStoreService,private messageService:MessageService,private playerServe: PlayerService) {
     // this.albumServe.categories().subscribe(res => {
     //   // console.log(res);
     // })
-    this.store$.select(selectContextFeature).pipe(select(getUser)).subscribe(user => {
-      console.log('context user',user)
-    })
   }
 
-  setUser():void{
-    this.store$.dispatch(setUser({
-      phone:'111',
-      name:'张三',
-      password:'aaa'
-    }))
-  }
 
   // showOverlay(){
   //   this.overlayRef = this.overlayService.create({fade:true,responseEvent:false,backgroundColor:'rgba(0, 0, 0, .32)'})!;
@@ -108,7 +92,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     if(this.winServe.getStorage(storageKeys.remember)){
       this.userServe.userInfo().subscribe(({user,token}) => {
-        this.contextService.setUser(user);
+        this.contextStoreService.setUser(user);
         // console.log(res);
         this.winServe.setStorage(storageKeys.auth,token);
       },error => {
@@ -175,7 +159,7 @@ export class AppComponent implements OnInit {
 
   logout():void{
     this.userServe.logout().subscribe(() => {
-      this.contextService.setUser(null);
+      this.contextStoreService.setUser(null);
       this.clearStorage();
       // alert('退出成功');
       this.messageService.success('退出成功');

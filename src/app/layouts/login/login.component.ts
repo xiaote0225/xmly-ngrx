@@ -8,7 +8,7 @@ import { Component, OnInit, ChangeDetectionStrategy, AfterViewInit, ElementRef, 
 import { empty, merge, of, pluck, Subscription, switchMap } from 'rxjs';
 import { OverlayRef, OverlayService } from 'src/app/services/tools/overlay.service';
 import { UserService } from 'src/app/services/apis/user.service';
-import { ContextService } from 'src/app/services/business/context.service';
+import { ContextStoreService } from 'src/app/services/business/context.store.service';
 
 @Component({
   selector: 'xm-login',
@@ -64,8 +64,8 @@ export class LoginComponent implements OnInit,AfterViewInit,OnChanges {
     @Inject(PLATFORM_ID) private platformId:object,
     private userService:UserService,
     private winServe:WindowService,
-    private contextService:ContextService,
-    private messageServe:MessageService
+    private messageServe:MessageService,
+    private contextStoreService:ContextStoreService
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -146,7 +146,7 @@ export class LoginComponent implements OnInit,AfterViewInit,OnChanges {
     console.log('submit',this.formValues.value)
     if(this.formValues.valid){
       this.userService.login(this.formValues.value).subscribe(({user,token}) => {
-        this.contextService.setUser(user);
+        this.contextStoreService.setUser(user);
         // console.log(res);
         this.winServe.setStorage(storageKeys.auth,token);
         if(this.remember){

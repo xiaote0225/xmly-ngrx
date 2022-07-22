@@ -1,10 +1,10 @@
-import { ContextService } from './../../services/business/context.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy, Inject, ElementRef, AfterViewInit, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { debounceTime, distinctUntilChanged, fromEvent } from 'rxjs';
 
 import { User } from './../../services/apis/types';
+import { ContextStoreService } from 'src/app/services/business/context.store.service';
 @Component({
   selector: 'xm-header',
   templateUrl: './header.component.html',
@@ -37,11 +37,11 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     @Inject(DOCUMENT) private doc: Document,
     private el: ElementRef,
     private cdr: ChangeDetectorRef,
-    private contextServe:ContextService
+    private contextStoreService:ContextStoreService
   ) { }
 
   ngOnInit(): void {
-    this.contextServe.getUser().subscribe((user: User|null) => {
+    this.contextStoreService.getUser().subscribe((user: User|null) => {
       this.user = user;
       this.cdr.markForCheck();
     })
