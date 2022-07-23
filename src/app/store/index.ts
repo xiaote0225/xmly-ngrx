@@ -3,13 +3,16 @@ import { META_REDUCERS, StoreModule } from '@ngrx/store';
 import { NgModule } from "@angular/core";
 import { EffectsModule } from '@ngrx/effects';
 import { metaReducerFactory, STORE_CONFIG } from './configs';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { extModules } from 'src/build-specifics';
 
 @NgModule({
   declarations:[],
   imports:[
     StoreModule.forRoot({},STORE_CONFIG),
     EffectsModule.forRoot(),
-    ContextStoreModule
+    ContextStoreModule,
+    extModules
   ],
   // providers:[
   //   {
