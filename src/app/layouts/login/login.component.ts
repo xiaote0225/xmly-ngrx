@@ -5,7 +5,7 @@ import { trigger, transition, style, animate,AnimationEvent } from '@angular/ani
 import { isPlatformBrowser } from '@angular/common';
 import { AbstractControl, FormBuilder, FormControl, ValidationErrors, Validators } from '@angular/forms';
 import { Component, OnInit, ChangeDetectionStrategy, AfterViewInit, ElementRef, Renderer2, ViewChild, Input, OnChanges, SimpleChanges, Output, EventEmitter, Inject, PLATFORM_ID } from '@angular/core';
-import { empty, merge, of, pluck, Subscription, switchMap } from 'rxjs';
+import { empty, merge, of, pluck, Subject, Subscription, switchMap, takeUntil } from 'rxjs';
 import { OverlayRef, OverlayService } from 'src/app/services/tools/overlay.service';
 import { UserService } from 'src/app/services/apis/user.service';
 import { ContextStoreService } from 'src/app/services/business/context.store.service';
@@ -55,6 +55,7 @@ export class LoginComponent implements OnInit,AfterViewInit,OnChanges {
 
   private overlayRef!:OverlayRef | null;
   private overlaySub!:Subscription | null;
+  private hide$ = new Subject<void>();
   @ViewChild('modalWrap',{static:false}) private modalWrap!:ElementRef;
   constructor(
     private overlayService:OverlayService,
@@ -71,6 +72,7 @@ export class LoginComponent implements OnInit,AfterViewInit,OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if(this.show){
       this.create();
+      this.watchLogin();
     }else{
       this.visible = false;
     }
@@ -106,7 +108,7 @@ export class LoginComponent implements OnInit,AfterViewInit,OnChanges {
     if(isPlatformBrowser(this.platformId)){
       this.overlayRef = this.overlayService.create({fade:true,center:true,responseEvent:true,backgroundColor:'rgba(0, 0, 0, .32)'})!;
       console.log('overlayRef-------------------------',this.overlayRef);
-      this.overlaySub = merge(
+      merge(
         this.overlayRef.backdropClick(),
         this.overlayRef.backdropKeyup().pipe(
           pluck('key'),
@@ -114,7 +116,7 @@ export class LoginComponent implements OnInit,AfterViewInit,OnChanges {
             return key.toUpperCase() === 'ESCAPE' ? of(key) : empty();
           })
         )
-      ).subscribe(() => {
+      ).pipe(takeUntil(this.hide$)).subscribe(() => {
         console.log('listen events');
         // this.hideOverlay();
         this.hide.emit();
@@ -145,31 +147,50 @@ export class LoginComponent implements OnInit,AfterViewInit,OnChanges {
     console.log('-------------------submit');
     console.log('submit',this.formValues.value)
     if(this.formValues.valid){
-      this.userService.login(this.formValues.value).subscribe(({user,token}) => {
-        this.contextStoreService.setUser(user);
-        // console.log(res);
-        this.winServe.setStorage(storageKeys.auth,token);
-        if(this.remember){
-          this.winServe.setStorage(storageKeys.remember,'true');
-        }
-        this.hide.emit();
-        this.messageServe.success('登陆成功');
-        // this.winServe.alert('登陆成功');
-      },error => {
-        console.error('error',error);
-        // alert(error.error.message || '登陆失败');
-        this.messageServe.error(error.error.message || '登陆失败');
-      });
+      this.contextStoreService.login(this.formValues.value);
+      // this.userService.login(this.formValues.value).subscribe(({user,token}) => {
+      //   this.contextStoreService.setUser(user);
+      //   // console.log(res);
+      //   this.winServe.setStorage(storageKeys.auth,token);
+      //   if(this.remember){
+      //     this.winServe.setStorage(storageKeys.remember,'true');
+      //   }
+      //   this.hide.emit();
+      //   this.messageServe.success('登陆成功');
+      //   // this.winServe.alert('登陆成功');
+      // },error => {
+      //   console.error('error',error);
+      //   // alert(error.error.message || '登陆失败');
+      //   this.messageServe.error(error.error.message || '登陆失败');
+      // });
     }
+  }
+
+  private watchLogin():void{
+    this.hide$ = new Subject<void>();
+    this.contextStoreService.context$.pipe(takeUntil(this.hide$)).subscribe(
+      context => {
+        if(context.user){
+          this.winServe.setStorage(storageKeys.auth,context.token);
+          if(this.remember){
+            this.winServe.setStorage(storageKeys.remember,'true');
+          }
+          this.hide.emit();
+          this.messageServe.success('登陆成功');
+        }
+      }
+    );
   }
 
 
   animationDone(event:AnimationEvent):void{
     if(event.toState === 'void'){
-      if(this.overlaySub){
-        this.overlaySub.unsubscribe();
-        this.overlaySub = null;
-      }
+      // if(this.overlaySub){
+      //   this.overlaySub.unsubscribe();
+      //   this.overlaySub = null;
+      // }
+      this.hide$.next();
+      this.hide$.complete();
       if(this.overlayRef){
         this.overlayRef?.dispose();
         this.overlayRef = null;

@@ -91,14 +91,15 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.winServe.getStorage(storageKeys.remember)){
-      this.userServe.userInfo().subscribe(({user,token}) => {
-        this.contextStoreService.setUser(user);
-        // console.log(res);
-        this.winServe.setStorage(storageKeys.auth,token);
-      },error => {
-        console.error('error---------',error);
-        this.clearStorage();
-      });
+      // this.userServe.userInfo().subscribe(({user,token}) => {
+      //   this.contextStoreService.setUser(user);
+      //   // console.log(res);
+      //   this.winServe.setStorage(storageKeys.auth,token);
+      // },error => {
+      //   console.error('error---------',error);
+      //   this.clearStorage();
+      // });
+      this.contextStoreService.userInfo();
     }
     this.init();
     this.watchPlayer();
@@ -158,18 +159,19 @@ export class AppComponent implements OnInit {
   }
 
   logout():void{
-    this.userServe.logout().subscribe(() => {
-      this.contextStoreService.setUser(null);
-      this.clearStorage();
-      // alert('退出成功');
-      this.messageService.success('退出成功');
-    });
+    // this.userServe.logout().subscribe(() => {
+    //   this.contextStoreService.setUser(null);
+    //   this.clearStorage();
+    //   // alert('退出成功');
+    //   this.messageService.success('退出成功');
+    // });
+    this.contextStoreService.logout();
   }
 
-  private clearStorage():void{
-    this.winServe.removeStorage(storageKeys.remember);
-    this.winServe.removeStorage(storageKeys.auth);
-  }
+  // private clearStorage():void{
+  //   this.winServe.removeStorage(storageKeys.remember);
+  //   this.winServe.removeStorage(storageKeys.auth);
+  // }
 
   closePlayer():void{
     this.playerServe.clear();

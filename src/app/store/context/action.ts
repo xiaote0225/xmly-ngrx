@@ -12,6 +12,10 @@ export const loginSuccess = createAction(
   props<LoginType>()
 );
 
+export const logoutSuccess = createAction(
+  '[Context] Logout success'
+);
+
 export const logout = createAction(
   '[Context] logout'
 );
@@ -22,6 +26,5 @@ export const setUser = createAction(
 );
 
 export const getUserInfo = createAction(
-  '[Context] Get user info',
-  props<LoginType>()
+  '[Context] Get user info'
 );

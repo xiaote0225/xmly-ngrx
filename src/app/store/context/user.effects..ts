@@ -1,6 +1,6 @@
 import { storageKeys } from './../../configs';
 import { catchError } from 'rxjs/operators';
-import { login, loginSuccess, getUserInfo, logout, setUser } from './action';
+import { login, loginSuccess, getUserInfo, logout, setUser, logoutSuccess } from './action';
 import { WindowService } from './../../services/tools/window.service';
 import { UserService } from './../../services/apis/user.service';
 import { MessageService } from './../../share/components/message/message.service';
@@ -41,7 +41,7 @@ export class UserEffects {
   logout$ = createEffect(() => this.actions$.pipe(
     ofType(logout),
     mergeMap(() => this.userServe.logout()),
-    map(() => setUser(null!)),
+    map(() => logoutSuccess()),
     tap(res => {
       this.clearStorage();
       this.messageServe.success('退出成功');
