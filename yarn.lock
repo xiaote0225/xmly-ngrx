@@ -1227,6 +1227,20 @@
   dependencies:
     "tslib" "^2.0.0"
 
+"@ngrx/entity@^13.2.0":
+  "integrity" "sha512-2zgz2/3BpYSvVNLqQM034lK3kQ0UoHj7kxmtf5Bkf2yWrjEGVmwyRUYDt1/vlfoBUE/KU7DDPHWJT8r5Li0ALA=="
+  "resolved" "http://10.6.32.13:4873/@ngrx%2fentity/-/entity-13.2.0.tgz"
+  "version" "13.2.0"
+  dependencies:
+    "tslib" "^2.0.0"
+
+"@ngrx/store-devtools@^13.2.0":
+  "integrity" "sha512-k1NifkR/4OjbjAxauVZODCsgs2owMJXvEX2XoTWth7zscbHE8L3pLd0k1ox5pMPUEqWIptWTaJDzYqnQSoJaaw=="
+  "resolved" "https://registry.npmjs.org/@ngrx/store-devtools/-/store-devtools-13.2.0.tgz"
+  "version" "13.2.0"
+  dependencies:
+    "tslib" "^2.0.0"
+
 "@ngrx/store@^13.2.0", "@ngrx/store@13.2.0":
   "integrity" "sha512-3wlGMkfe0EXsiS6E6W0wCksuGapa5Z6JVFvKQMHFpXZ3XeixXKlULnemlcdMT7Yrnry+CGOtRHqkmKxLoQzhTw=="
   "resolved" "http://10.6.32.13:4873/@ngrx%2fstore/-/store-13.2.0.tgz"

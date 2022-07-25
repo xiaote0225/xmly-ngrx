@@ -1,10 +1,10 @@
 import { ContextStoreModule } from './context/index';
-import { META_REDUCERS, StoreModule } from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 import { NgModule } from "@angular/core";
 import { EffectsModule } from '@ngrx/effects';
-import { metaReducerFactory, STORE_CONFIG } from './configs';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { STORE_CONFIG } from './configs';
 import { extModules } from 'src/build-specifics';
+import { BookStoreModule } from './book';
 
 @NgModule({
   declarations:[],
@@ -12,7 +12,8 @@ import { extModules } from 'src/build-specifics';
     StoreModule.forRoot({},STORE_CONFIG),
     EffectsModule.forRoot(),
     ContextStoreModule,
-    extModules
+    BookStoreModule,
+    extModules,
   ],
   // providers:[
   //   {
