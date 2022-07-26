@@ -1,3 +1,4 @@
+import { ReactiveComponentModule } from '@ngrx/component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -13,7 +14,8 @@ import { DirectivesModule } from './../../share/directives/directives.module';
   imports: [
     CommonModule,
     MovieRoutingModule,
-    DirectivesModule
+    DirectivesModule,
+    ReactiveComponentModule
   ]
 })
 export class MovieModule { }

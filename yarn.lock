@@ -1227,6 +1227,13 @@
   dependencies:
     "tslib" "^2.0.0"
 
+"@ngrx/component@^13.2.0":
+  "integrity" "sha512-TOGFMpNs9fG2HAooNvQc4BKsLSkYNnP/+ivIkkxcNunifoY5ZnZC+e+8qOKqeba2gsMxXeqban0ioE9voTbWow=="
+  "resolved" "http://10.6.32.13:4873/@ngrx%2fcomponent/-/component-13.2.0.tgz"
+  "version" "13.2.0"
+  dependencies:
+    "tslib" "^2.0.0"
+
 "@ngrx/effects@^13.2.0":
   "integrity" "sha512-HmWggpl3xGQFfUzON/uel5jSyUWsrGZsR5qR/oFLGjPRWzwKfdHrl0OcBl5IhFgFxT74cAi9F4JTICUytGRbFA=="
   "resolved" "http://10.6.32.13:4873/@ngrx%2feffects/-/effects-13.2.0.tgz"
