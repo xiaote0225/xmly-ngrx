@@ -1220,6 +1220,13 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@ngrx/component-store@^13.2.0":
+  "integrity" "sha512-+g4AVI59rrQewPUDmpnMQORlm1odUkfcdWmRdB8NuArPnMbU32Qd8/ROsxB2hWCw4bzLOHXWl9TR43864DuhhQ=="
+  "resolved" "http://10.6.32.13:4873/@ngrx%2fcomponent-store/-/component-store-13.2.0.tgz"
+  "version" "13.2.0"
+  dependencies:
+    "tslib" "^2.0.0"
+
 "@ngrx/effects@^13.2.0":
   "integrity" "sha512-HmWggpl3xGQFfUzON/uel5jSyUWsrGZsR5qR/oFLGjPRWzwKfdHrl0OcBl5IhFgFxT74cAi9F4JTICUytGRbFA=="
   "resolved" "http://10.6.32.13:4873/@ngrx%2feffects/-/effects-13.2.0.tgz"
