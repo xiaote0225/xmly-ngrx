@@ -1,3 +1,4 @@
+import { RouterStoreModule } from './router/index';
 import { ContextStoreModule } from './context/index';
 import { StoreModule } from '@ngrx/store';
 import { NgModule } from "@angular/core";
@@ -13,6 +14,7 @@ import { BookStoreModule } from './book';
     EffectsModule.forRoot(),
     ContextStoreModule,
     BookStoreModule,
+    RouterStoreModule,
     extModules,
   ],
   // providers:[

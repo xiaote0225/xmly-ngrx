@@ -161,7 +161,7 @@
     "symbol-observable" "4.0.0"
     "uuid" "8.3.2"
 
-"@angular/common@~13.3.0", "@angular/common@13.3.5":
+"@angular/common@^13.0.0", "@angular/common@~13.3.0", "@angular/common@13.3.5":
   "integrity" "sha512-teG+itdlw2sOMwYeXkeFe8h32SsNqN0qHHz/v6I9qKHgCLkC/or8A7NtsoCwYSTymIEJJ7DZ1w9VWhM7DSYd1w=="
   "resolved" "https://registry.npmjs.org/@angular/common/-/common-13.3.5.tgz"
   "version" "13.3.5"
@@ -219,7 +219,7 @@
   dependencies:
     "tslib" "^2.3.0"
 
-"@angular/router@~13.3.0":
+"@angular/router@^13.0.0", "@angular/router@~13.3.0":
   "integrity" "sha512-3yUNyBpUi0KUKP91a3dVQsr9Jfjs4wGxpiFYb3apc7lKT5R1LJqt2O0EchjOgvFyJ6TDOemdCAzKgvSRkDxpMw=="
   "resolved" "https://registry.npmjs.org/@angular/router/-/router-13.3.5.tgz"
   "version" "13.3.5"
@@ -1237,6 +1237,13 @@
 "@ngrx/entity@^13.2.0":
   "integrity" "sha512-2zgz2/3BpYSvVNLqQM034lK3kQ0UoHj7kxmtf5Bkf2yWrjEGVmwyRUYDt1/vlfoBUE/KU7DDPHWJT8r5Li0ALA=="
   "resolved" "http://10.6.32.13:4873/@ngrx%2fentity/-/entity-13.2.0.tgz"
+  "version" "13.2.0"
+  dependencies:
+    "tslib" "^2.0.0"
+
+"@ngrx/router-store@^13.2.0":
+  "integrity" "sha512-ojHxsGsHljYWiqv/OUQHFLb4ZNvmsBlF+CHGZ7vCwLYJ2d9TB2y5nOezfaZ1L46MLUp+uM3FD3fpnIFwXYsTNw=="
+  "resolved" "http://10.6.32.13:4873/@ngrx%2frouter-store/-/router-store-13.2.0.tgz"
   "version" "13.2.0"
   dependencies:
     "tslib" "^2.0.0"

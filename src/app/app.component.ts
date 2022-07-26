@@ -11,6 +11,9 @@ import { storageKeys } from './configs';
 import { MessageService } from './share/components/message/message.service';
 import { PlayerService } from './services/business/player.service';
 import { ContextStoreService } from './services/business/context.store.service';
+import { RouterStoreModule } from './store/router';
+import { Store,select } from '@ngrx/store';
+import { selectCustomRouter, selectRouteParams } from './store/router/custom.reducer';
 
 @Component({
   selector: 'xm-root',
@@ -55,10 +58,23 @@ export class AppComponent implements OnInit {
   // private overlaySub!:Subscription | null;
 
   showLogin = false;
-  constructor(private albumServe: AlbumService, private cdr: ChangeDetectorRef, private categoryService: CategoryService,private router: Router,private winServe:WindowService,private userServe:UserService,private contextStoreService:ContextStoreService,private messageService:MessageService,private playerServe: PlayerService) {
+  constructor(private albumServe: AlbumService, private cdr: ChangeDetectorRef, private categoryService: CategoryService,private router: Router,private winServe:WindowService,private userServe:UserService,private contextStoreService:ContextStoreService,private messageService:MessageService,private playerServe: PlayerService,readonly routerStore$: Store<RouterStoreModule>) {
     // this.albumServe.categories().subscribe(res => {
     //   // console.log(res);
     // })
+
+    // const routerFeature = this.routerStore$.select(selectCustomRouter);
+    // routerFeature.subscribe(res => {
+    //   console.log('selectRouter', res);
+    // });
+
+    // this.routerStore$.select(selectUrl).subscribe(res => {
+    //   console.log('selectUrl', res);
+    // });
+
+    this.routerStore$.subscribe(res => {
+      console.log('selectRouteParam', res);
+    });
   }
 
 
