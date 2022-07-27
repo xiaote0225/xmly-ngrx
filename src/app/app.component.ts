@@ -58,7 +58,7 @@ export class AppComponent implements OnInit {
   // private overlaySub!:Subscription | null;
 
   showLogin = false;
-  constructor(private albumServe: AlbumService, private cdr: ChangeDetectorRef, private categoryService: CategoryService,private router: Router,private winServe:WindowService,private userServe:UserService,private contextStoreService:ContextStoreService,private messageService:MessageService,private playerServe: PlayerService,readonly routerStore$: Store<RouterStoreModule>) {
+  constructor(private albumServe: AlbumService, private cdr: ChangeDetectorRef, private categoryService: CategoryService,private router: Router,private winServe:WindowService,private userServe:UserService,private contextStoreService:ContextStoreService,private messageService:MessageService,private playerServe: PlayerService) {
     // this.albumServe.categories().subscribe(res => {
     //   // console.log(res);
     // })
@@ -72,9 +72,9 @@ export class AppComponent implements OnInit {
     //   console.log('selectUrl', res);
     // });
 
-    this.routerStore$.subscribe(res => {
-      console.log('selectRouteParam', res);
-    });
+    // this.routerStore$.subscribe(res => {
+    //   console.log('selectRouteParam', res);
+    // });
   }
 
 

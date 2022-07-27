@@ -1,3 +1,4 @@
+import { CategoryStoreModule } from './category/index';
 import { RouterStoreModule } from './router/index';
 import { ContextStoreModule } from './context/index';
 import { StoreModule } from '@ngrx/store';
@@ -15,6 +16,7 @@ import { CategoryEffects } from './category/category.effects';
     StoreModule.forRoot({},STORE_CONFIG),
     EffectsModule.forRoot(),
     ContextStoreModule,
+    CategoryStoreModule,
     BookStoreModule,
     RouterStoreModule,
     extModules,
