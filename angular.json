@@ -1,7 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
-    "analytics": "0eae8cf3-cf26-4f5d-a470-c8f58d6fbf71"
+    "analytics": "0eae8cf3-cf26-4f5d-a470-c8f58d6fbf71",
+    "defaultCollection": "@ngrx/schematics"
   },
   "version": 1,
   "newProjectRoot": "projects",
@@ -62,7 +63,7 @@
             "allowedCommonJsDependencies": [
               "lodash",
               "qs"
-           ]
+            ]
           },
           "configurations": {
             "production": {

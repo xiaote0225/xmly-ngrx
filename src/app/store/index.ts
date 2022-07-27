@@ -6,6 +6,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { STORE_CONFIG } from './configs';
 import { extModules } from 'src/build-specifics';
 import { BookStoreModule } from './book';
+import * as fromMobile from './mobile';
+import { CategoryEffects } from './category/category.effects';
 
 @NgModule({
   declarations:[],
@@ -16,6 +18,8 @@ import { BookStoreModule } from './book';
     BookStoreModule,
     RouterStoreModule,
     extModules,
+    StoreModule.forFeature(fromMobile.mobileFeatureKey, fromMobile.reducers, { metaReducers: fromMobile.metaReducers }),
+    EffectsModule.forFeature([CategoryEffects]),
   ],
   // providers:[
   //   {
